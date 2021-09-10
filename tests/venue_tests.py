@@ -36,5 +36,10 @@ class TestVenue(unittest.TestCase):
         self.assertEqual(95, self.guest_1.wallet)
         self.assertEqual(505, self.venue.till)
     
+    def test_guests_pay_entry_fee__insufficient_wallet(self):
+        self.venue.accept_entry_fee(self.guest_2)
+        self.assertEqual(2, self.guest_2.wallet)
+        self.assertEqual(500, self.venue.till)
+    
     
 
