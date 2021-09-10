@@ -18,3 +18,10 @@ class Room:
     def add_songs(self, song):
         self.songs.append(song)
         
+    def guest_favourite_song_is_on(self, guest):
+        for song in self.songs:
+            if song.title == guest.favourite_song.title and song.artist == guest.favourite_song.artist:
+                print(guest.favourite_song_is_on())
+                return True
+        return False
+

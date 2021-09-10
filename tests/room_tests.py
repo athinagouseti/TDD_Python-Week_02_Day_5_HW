@@ -14,11 +14,11 @@ class TestRoom(unittest.TestCase):
         self.song_3 = Song("Aerosmith", "Walk This Way")
         self.room.songs = [self.song, self.song_1, self.song_2]
        
-        self.guest_1 = Guest( "Stevie", 30, "Hot Blooded")
-        self.guest_2 = Guest("Freddie", 50, "I Want To Break Free")
-        self.guest_3 = Guest("Steven", 60, "Valerie")
-        self.guest_4 = Guest("Brian", 40, "Hammer to Fall")
-        self.guest_5 = Guest("Mick", 100, "Little Lies")
+        self.guest_1 = Guest( "Stevie", 30, Song("Foreigner", "Hot Blooded"))
+        self.guest_2 = Guest("Freddie", 50, Song("Queen", "I Want To Break Free"))
+        self.guest_3 = Guest("Steve", 60, Song("Steve Winwood", "Valerie"))
+        self.guest_4 = Guest("Brian", 40, Song("Queen", "Hammer to Fall"))
+        self.guest_5 = Guest("Mick", 100, Song("Fleetwood Mac", "Little Lies"))
         self.room.guests = [self.guest_1, self.guest_2, self.guest_3]
        
         
@@ -51,4 +51,5 @@ class TestRoom(unittest.TestCase):
     def test_guest_favourite_song_is_on(self):
         self.assertEqual(True, self.room.guest_favourite_song_is_on(self.guest_2))
 
-    
+    def test_guest_favourite_song_is__not_on(self):
+        self.assertEqual(False, self.room.guest_favourite_song_is_on(self.guest_1))

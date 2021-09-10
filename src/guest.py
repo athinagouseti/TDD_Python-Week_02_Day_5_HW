@@ -5,3 +5,7 @@ class Guest:
         self.wallet = wallet
         self.favourite_song = favourite_song
         
+    def favourite_song_is_on(self):
+        return "Whoo"
+
+        
