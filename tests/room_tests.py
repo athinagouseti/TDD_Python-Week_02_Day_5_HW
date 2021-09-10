@@ -1,3 +1,4 @@
+from src.song import Song
 import unittest
 from src.room import Room
 from src.guest import Guest
@@ -6,8 +7,13 @@ class TestRoom(unittest.TestCase):
 
     def setUp(self):
         self.room = Room(4)
-        self.room.songs = ["Little Lies", "I Want To Break Free", "Valerie"]
-        
+
+        self.song = Song("Fleetwood Mac", "Little Lies")
+        self.song_1 = Song("Queen", "I Want To Break Free")
+        self.song_2 = Song("Journey", "Any Way You Want It")
+        self.song_3 = Song("Aerosmith", "Walk This Way")
+        self.room.songs = [self.song, self.song_1, self.song_2]
+       
         self.guest_1 = Guest("Mick", 100, "Little Lies")
         self.guest_2 = Guest("Freddie", 50, "I Want To Break Free")
         self.guest_3 = Guest("Steven", 60, "Valerie")
@@ -17,7 +23,7 @@ class TestRoom(unittest.TestCase):
        
         
     def test_room_has_songs(self):
-        self.assertEqual(["Little Lies", "I Want To Break Free","Valerie"], self.room.songs)
+        self.assertEqual([self.song, self.song_1, self.song_2], self.room.songs)
 
     def test_room_has_guests(self):
         self.assertEqual([self.guest_1, self.guest_2, self.guest_3], self.room.guests)
@@ -37,6 +43,11 @@ class TestRoom(unittest.TestCase):
     def test_check_out_guests(self):
         self.room.check_out_guest(self.guest_3)
         self.assertEqual(2, len(self.room.guests))
+
+    def test_add_songs_to_room(self):
+        self.room.add_songs(self.song_3)
+        self.assertEqual([self.song, self.song_1, self.song_2, self.song_3], self.room.songs)
+        
 
 
     
