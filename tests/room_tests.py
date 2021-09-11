@@ -2,6 +2,7 @@ from src.song import Song
 import unittest
 from src.room import Room
 from src.guest import Guest
+from src.transaction import Transaction
 
 class TestRoom(unittest.TestCase):
 
@@ -20,6 +21,8 @@ class TestRoom(unittest.TestCase):
         self.guest_4 = Guest("Brian", 40, Song("Queen", "Hammer to Fall"))
         self.guest_5 = Guest("Mick", 100, Song("Fleetwood Mac", "Little Lies"))
         self.room.guests = [self.guest_1, self.guest_2, self.guest_3]
+
+        self.transaction_1 = Transaction(10, self.guest_1, "drink")
        
         
     def test_room_has_songs(self):
@@ -30,6 +33,9 @@ class TestRoom(unittest.TestCase):
     
     def test_room_has_capacity(self):
         self.assertEqual(4, self.room.capacity)
+
+    def test_room_has_bar_tab(self):
+        self.assertEqual([], self.room.bar_tab)
 
     def test_check_in_guest__have_capacity(self):
         self.room.check_in_guest(self.guest_4)
@@ -53,3 +59,7 @@ class TestRoom(unittest.TestCase):
 
     def test_guest_favourite_song_is__not_on(self):
         self.assertEqual(False, self.room.guest_favourite_song_is_on(self.guest_1))
+
+    def test_bar_tab_add_transaction(self):
+        self.room.bar_tab_add_transaction(self.transaction_1)
+        self.assertEqual([self.transaction_1], self.room.bar_tab)

@@ -4,6 +4,7 @@ class Room:
         self.songs = []
         self.guests = []
         self.capacity = capacity
+        self.bar_tab = []
     
     def total_guests(self):
         return len(self.guests)
@@ -24,4 +25,8 @@ class Room:
                 print(guest.favourite_song_is_on())
                 return True
         return False
+
+    def bar_tab_add_transaction(self, transaction):
+        self.bar_tab.append(transaction)
+
 
